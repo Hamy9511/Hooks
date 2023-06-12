@@ -1,22 +1,15 @@
-import React from "react";
+import React, {useState} from "react";
 import { TextField, Button, Box } from "@mui/material";
 
-class DatosUsuario extends React.Component {
+//class ComponentClase extends React.Component{   //COMPOENNTES CON CLASES
+  //render(){
+    //return <></>
+  //}
+//}
 
-  constructor(props){ //actualizar nuestro estado de usuario
-    super(props);
-    this.state={
-      email: {
-        value: "", 
-        valid: true,
-      },
-      password: {
-        value: "",
-        valid: true,
-      },
-    }
-  }
-  render() {
+const DatosUsuario = () => {
+  const [email,setEmail] = useState({value: "hamilton", valid: true});
+  const [password,setPassword] = useState({value: "abc", valid: true})
     return (
       <Box
         component="form"
@@ -27,7 +20,8 @@ class DatosUsuario extends React.Component {
           justifyContent: "center",
           flexDirection: "column",
         }}
-        onSubmit={(e)=> {e.preventDefault()}}
+        onSubmit={(e)=> {e.preventDefault();
+        console.log({email,password})}}
       >
         <TextField
           label="Correo electrónico"
@@ -37,8 +31,8 @@ class DatosUsuario extends React.Component {
           type="email"
           error={false}
           helperText={false && "Ingresa un correo electrónico válido"}
-          value={this.state.email.value}
-          onChange={(input)=> this.setState({email: {value: input.target.value}})} //actualizar nuestr5o estado de usuario
+          value={email.value}
+          onChange={(input)=> setEmail({value: input.target.value, valid: true})}
         />
         <TextField
           label="Contraseña"
@@ -46,15 +40,14 @@ class DatosUsuario extends React.Component {
           fullWidth
           margin="dense"
           type="password"
-          value={this.state.password.value}
-          onChange={(input)=> this.setState({password: {value: input.target.value}})}
+          value={password.value}
+          onChange={(input)=> setPassword({value: input.target.value, valid: true})}
         />
         <Button variant="contained" type="submit">
           Siguiente
         </Button>
       </Box>
     );
-  }
 }
 
 export default DatosUsuario;
