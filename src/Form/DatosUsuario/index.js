@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import { TextField, Button, Box } from "@mui/material";
+import { validarEmail, validarPassword } from "./validaciones.js"
 
 //class ComponentClase extends React.Component{   //COMPOENNTES CON CLASES
   //render(){
@@ -8,8 +9,8 @@ import { TextField, Button, Box } from "@mui/material";
 //}
 
 const DatosUsuario = () => {
-  const [email,setEmail] = useState({value: "hamilton", valid: true});
-  const [password,setPassword] = useState({value: "abc", valid: true})
+  const [email,setEmail] = useState({value: "", valid: null });
+  const [password,setPassword] = useState({value: "", valid: null })
     return (
       <Box
         component="form"
@@ -32,7 +33,11 @@ const DatosUsuario = () => {
           error={false}
           helperText={false && "Ingresa un correo electrónico válido"}
           value={email.value}
-          onChange={(input)=> setEmail({value: input.target.value, valid: true})}
+          onChange={(input)=> {
+            const email = input.target.value;
+            validarEmail(email)
+            setEmail({value: email, valid: true})}
+          }
         />
         <TextField
           label="Contraseña"
@@ -41,7 +46,11 @@ const DatosUsuario = () => {
           margin="dense"
           type="password"
           value={password.value}
-          onChange={(input)=> setPassword({value: input.target.value, valid: true})}
+          onChange={(input)=> {
+            const password = input.target.value;
+            validarPassword(password);
+            setPassword({value: password, valid: true})}
+          }
         />
         <Button variant="contained" type="submit">
           Siguiente
