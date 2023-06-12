@@ -3,7 +3,7 @@ import { TextField, Button, Box } from "@mui/material";
 
 class DatosUsuario extends React.Component {
 
-  constructor(props){
+  constructor(props){ //actualizar nuestro estado de usuario
     super(props);
     this.state={
       email: {
@@ -38,7 +38,7 @@ class DatosUsuario extends React.Component {
           error={false}
           helperText={false && "Ingresa un correo electrónico válido"}
           value={this.state.email.value}
-          onChange={(input)=> this.setState({email: {value: input.target.value}})}
+          onChange={(input)=> this.setState({email: {value: input.target.value}})} //actualizar nuestr5o estado de usuario
         />
         <TextField
           label="Contraseña"
